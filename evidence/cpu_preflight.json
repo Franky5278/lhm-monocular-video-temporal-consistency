@@ -1,0 +1,80 @@
+{
+  "kind": "CPU import and asset preflight",
+  "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+  "records": [
+    {
+      "module": "torch",
+      "status": "pass",
+      "version": "2.3.0+cu121"
+    },
+    {
+      "module": "torchvision",
+      "status": "pass",
+      "version": "0.18.0+cu121"
+    },
+    {
+      "module": "pytorch3d",
+      "status": "pass",
+      "version": "0.7.7"
+    },
+    {
+      "module": "diff_gaussian_rasterization",
+      "status": "pass",
+      "version": null
+    },
+    {
+      "module": "simple_knn._C",
+      "status": "pass",
+      "version": null
+    },
+    {
+      "module": "mmcv",
+      "status": "pass",
+      "version": "1.7.2"
+    },
+    {
+      "module": "mmpose",
+      "status": "pass",
+      "version": "0.24.0"
+    },
+    {
+      "module": "ultralytics",
+      "status": "pass",
+      "version": "8.3.0"
+    },
+    {
+      "module": "diffusers",
+      "status": "pass",
+      "version": "0.32.0"
+    },
+    {
+      "module": "lpips",
+      "status": "pass",
+      "version": null
+    },
+    {
+      "module": "skimage",
+      "status": "pass",
+      "version": "0.24.0"
+    },
+    {
+      "module": "app_motion_ms",
+      "status": "pass",
+      "version": null
+    },
+    {
+      "asset": "/workspace/lhm/LHM/pretrained_models/human_model_files/pose_estimate/multiHMR_896_L.pt",
+      "status": "pass"
+    },
+    {
+      "asset": "/workspace/lhm/LHM/pretrained_models/human_model_files/pose_estimate/vitpose-h-wholebody.pth",
+      "status": "pass"
+    },
+    {
+      "asset": "/workspace/lhm/LHM/pretrained_models/human_model_files/pose_estimate/yolov8x.pt",
+      "status": "pass"
+    }
+  ],
+  "passed": true,
+  "GPU_inference_verified": false
+}

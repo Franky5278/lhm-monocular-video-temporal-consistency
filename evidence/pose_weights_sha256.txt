@@ -1,0 +1,3 @@
+c1b55933eb35df9b27966e1d8d3a69c4bc5e28eee0f0dd7f0cdc41c3f27202ca  /workspace/lhm/LHM/pretrained_models/human_model_files/pose_estimate/multiHMR_896_L.pt
+c4d5a3f000d771762f03fc8b57ebd0aae324aeaefdd6e68492a9c4470f2d1e8b  /workspace/lhm/LHM/pretrained_models/human_model_files/pose_estimate/yolov8x.pt
+dbed01fd5bb221610bf26434ec63426025f76eaca46f6177db71c9771a43316c  /workspace/lhm/LHM/pretrained_models/human_model_files/pose_estimate/vitpose-h-wholebody.pth
