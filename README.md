@@ -34,6 +34,10 @@ flowchart LR
 
 **The historical baseline already includes Gaussian smoothing.** Its jitter reduction does not establish improved motion accuracy. The old `drift_trans` metric is endpoint displacement, and the old held-out comparison was not calibrated camera rendering. GaussianAvatar and 3DGS-Avatar are related work, **not reproduced baselines in this repository**.
 
+![Historical jitter and motion-deviation tradeoff](figures/historical_motion_tradeoff.png)
+
+This figure uses the preserved historical log, including its duplicated input limitation. [Exact measurements and source lines](evidence/historical/motion_measurements.csv) accompany the [reproducible plotting script](research/plot_historical.py).
+
 ## Inspect the project
 
 - [Detailed source/report audit](evidence/historical/source_audit_20261026.md)

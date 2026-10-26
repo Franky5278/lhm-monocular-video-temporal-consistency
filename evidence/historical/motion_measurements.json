@@ -1,0 +1,26 @@
+{
+  "source": "poster_gradio_v7.log",
+  "rows": [
+    {
+      "variant": "Gaussian baseline",
+      "log_line": 80,
+      "jitter_pose": 0.12850192189216614,
+      "jitter_trans": 0.0013237191596999764,
+      "drift_trans": 0.07973220944404602,
+      "deviation_pose": 0.16112078726291656,
+      "deviation_trans": 0.001406611641868949
+    },
+    {
+      "variant": "Gaussian + EMA",
+      "log_line": 85,
+      "jitter_pose": 0.03254488855600357,
+      "jitter_trans": 0.0005296041490510106,
+      "drift_trans": 0.07973220944404602,
+      "deviation_pose": 0.4766274392604828,
+      "deviation_trans": 0.008208928629755974
+    }
+  ],
+  "scope": "Historical 120-frame run; duplicated 60-frame input. Not a new GPU result.",
+  "deviation_reference": "raw fitted motion, not ground-truth motion",
+  "drift_trans_definition": "endpoint displacement in meters, not error"
+}
