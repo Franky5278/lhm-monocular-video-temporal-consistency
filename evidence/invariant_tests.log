@@ -1,5 +1,8 @@
 test_anchor_mismatch_rejected (__main__.FusionInvariants) ... ok
 test_high_confidence_graph_color_unchanged (__main__.FusionInvariants) ... ok
+test_native_attention_matches_explicit_attention (__main__.FusionInvariants) ... /workspace/lhm/LHM/LHM/models/encoders/dinov2/layers/attention.py:34: UserWarning: xFormers is not available (Attention)
+  warnings.warn("xFormers is not available (Attention)")
+ok
 test_quaternion_antipodes_do_not_cancel (__main__.FusionInvariants) ... ok
 test_scale_geometric_average (__main__.FusionInvariants) ... ok
 test_serialization_preserves_attributes (__main__.FusionInvariants) ... ok
@@ -7,6 +10,6 @@ test_shape_mismatch_rejected (__main__.FusionInvariants) ... ok
 test_single_source_not_called_fusion (__main__.FusionInvariants) ... ok
 
 ----------------------------------------------------------------------
-Ran 7 tests in 0.705s
+Ran 8 tests in 0.252s
 
 OK

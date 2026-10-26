@@ -1262,10 +1262,21 @@ def demo_lhm(lhm, motion_generation, cfg): # Only lhm and cfg remain from origin
 
         motion_processing_dir = "./train_data/users/motion_processing"
         video_hash = get_video_hash(video_params)
+        if os.environ.get("LHM_HEADLESS") == "1":
+            import hashlib as _hashlib
+            _motion_hash = _hashlib.sha256(b"single-pass-motion-v2")
+            with open(video_params, "rb") as _video:
+                for _chunk in iter(lambda: _video.read(1024 * 1024), b""):
+                    _motion_hash.update(_chunk)
+            _camera_file = os.environ.get("LHM_SOURCE_CAMERA_JSON")
+            if _camera_file:
+                with open(_camera_file, "rb") as _camera:
+                    _motion_hash.update(_camera.read())
+            video_hash = _motion_hash.hexdigest()[:24]
         output_path = os.path.join(motion_processing_dir, video_hash)
 
         # If smplx params already exist in repository, use them directly
-        if os.path.exists(smplx_params_dir):
+        if os.environ.get("LHM_HEADLESS") != "1" and os.path.exists(smplx_params_dir):
             baseline_smplx_dir = smplx_params_dir
             # derive improved variant from existing repo baseline (avoid double-gaussian)
             combo_dir = os.path.join(motion_processing_dir, video_hash + "_ours_from_repo")
@@ -1305,6 +1316,10 @@ def demo_lhm(lhm, motion_generation, cfg): # Only lhm and cfg remain from origin
                 print("Generating raw (unsmoothed) motion parameters (single V2M run)...")
                 raw_out = motion_generation(video_params, output_path + "_raw", is_file_only=True, smooth_mode="none")
                 raw_smplx_dir = raw_out
+                # The fitted motion is on disk; release V2M models before loading more models.
+                del motion_generation
+                import gc as _gc
+                _gc.collect()
                 torch.cuda.empty_cache()
 
                 # derive variants on CPU using postprocess utilities

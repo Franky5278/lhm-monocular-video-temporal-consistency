@@ -24,6 +24,21 @@ def fixture():
 
 
 class FusionInvariants(unittest.TestCase):
+    def test_native_attention_matches_explicit_attention(self):
+        import importlib.util
+        spec = importlib.util.spec_from_file_location('attention_validation',
+            source/'LHM/models/encoders/dinov2/layers/attention.py')
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        torch.manual_seed(42)
+        attention = module.Attention(32, num_heads=4).eval()
+        x = torch.randn(2, 17, 32)
+        qkv = attention.qkv(x).reshape(2, 17, 3, 4, 8).permute(2, 0, 3, 1, 4)
+        q, k, v = qkv[0]*attention.scale, qkv[1], qkv[2]
+        expected = attention.proj(((q @ k.transpose(-2, -1)).softmax(-1) @ v)
+                                  .transpose(1, 2).reshape(2, 17, 32))
+        self.assertTrue(torch.allclose(attention(x), expected, atol=1e-6, rtol=1e-5))
+
     def test_quaternion_antipodes_do_not_cancel(self):
         a, b = fixture(), fixture()
         b['gs'][0]['rotation'] *= -1
