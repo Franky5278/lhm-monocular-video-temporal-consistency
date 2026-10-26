@@ -1300,7 +1300,15 @@ def demo_lhm(lhm, motion_generation, cfg): # Only lhm and cfg remain from origin
                 improved_smplx_dir = smplx_params_dir
         else:
             os.makedirs(motion_processing_dir, exist_ok=True)
-            if not os.path.isdir(output_path + "_raw/smplx_params"):
+            _cache_marker = output_path + "_motion_complete.json"
+            _raw_exists = os.path.isdir(output_path + "_raw/smplx_params")
+            _cache_complete = _raw_exists and (
+                os.environ.get("LHM_HEADLESS") != "1" or os.path.isfile(_cache_marker))
+            if not _cache_complete:
+                if _raw_exists and os.environ.get("LHM_HEADLESS") == "1":
+                    # Preserve interrupted fits, but never reuse them as completed motion.
+                    import time as _time
+                    os.rename(output_path + "_raw", output_path + "_raw_incomplete_" + str(_time.time_ns()))
                 print("Loading Video2MotionPipeline (raw output)...")
                 device = avaliable_device()
                 motion_generation = Video2MotionPipeline(
@@ -1365,6 +1373,11 @@ def demo_lhm(lhm, motion_generation, cfg): # Only lhm and cfg remain from origin
 
                 baseline_smplx_dir = baseline_dir
                 improved_smplx_dir = combo_dir
+                import json as _cache_json
+                with open(_cache_marker, "w") as _cache_file:
+                    _cache_json.dump({"status": "complete", "video_hash": video_hash,
+                                      "raw": raw_smplx_dir, "baseline": baseline_dir,
+                                      "improved": combo_dir}, _cache_file)
             else:
                 # if already processed earlier, use cached variants
                 baseline_smplx_dir = os.path.join(output_path + "_baseline")
