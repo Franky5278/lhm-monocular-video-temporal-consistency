@@ -1,0 +1,1 @@
+Recovered from local LHM_Backup/code/LHM-run-poster-v7 on 2026-10-26. Original backup remains unchanged. Source is a historical snapshot; exact upstream commit unknown. Corrections and new runs will be documented separately.

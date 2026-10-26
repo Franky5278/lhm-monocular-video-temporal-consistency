@@ -216,3 +216,14 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+# Runtime assets and credentials remain outside Git
+*.pt
+*.pth
+*.safetensors
+*.tar
+*.tar.gz
+*.zip
+.instance-password
+inputs/
+pretrained_models/
+!evidence/**/*.log

@@ -1,0 +1,14 @@
+{
+  "313": {
+    "points": 100,
+    "max_pixel_error": 2.2737367544323206e-13,
+    "translation_conversion": "millimeters to meters",
+    "scope": "camera algebra validation; not avatar pose or quality validation"
+  },
+  "390": {
+    "points": 100,
+    "max_pixel_error": 2.8421709430404007e-13,
+    "translation_conversion": "millimeters to meters",
+    "scope": "camera algebra validation; not avatar pose or quality validation"
+  }
+}

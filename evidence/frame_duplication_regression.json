@@ -1,0 +1,8 @@
+{
+  "fixture": "real ZJU-313 source video",
+  "original_frames": 120,
+  "corrected_frames": 60,
+  "duplicated_half_exact_match": true,
+  "corrected_first_pass_pixel_exact": true,
+  "result": "pass"
+}
