@@ -6,7 +6,9 @@ from pathlib import Path
 import unittest
 import torch
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'vendor/LHM'))
+root = Path(__file__).resolve().parents[1]
+source = root/'vendor/LHM' if (root/'vendor/LHM').exists() else root/'LHM'
+sys.path.insert(0, str(source))
 from research_assets import fuse_bundles, refine_graph, validate, load_bundle
 
 

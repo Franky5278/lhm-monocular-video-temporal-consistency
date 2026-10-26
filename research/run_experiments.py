@@ -192,6 +192,9 @@ def fusion_stage(model, inputs, stage, confidence, graph=0.):
 
 
 def smoothing_stage(app, model, base, stage, alpha, branch):
+    import math
+    import torch
+    from pytorch3d.transforms import axis_angle_to_matrix
     from research_assets import load_bundle
     from engine.pose_estimation.pose_utils.postprocess import (
         make_variant_from_raw, load_smplx_dir, compute_metrics_vs)
@@ -206,6 +209,16 @@ def smoothing_stage(app, model, base, stage, alpha, branch):
     _, _, pose, _, trans = load_smplx_dir(str(motion_dir))
     metrics = compute_metrics_vs(raw_pose, raw_trans, pose, trans)
     metrics['endpoint_displacement_m'] = metrics.pop('drift_trans')
+    raw_r, predicted_r = axis_angle_to_matrix(raw_pose), axis_angle_to_matrix(pose)
+    relative = predicted_r.transpose(-2, -1) @ raw_r
+    trace = relative.diagonal(dim1=-2, dim2=-1).sum(-1)
+    degrees = torch.acos(((trace-1)/2).clamp(-1, 1)) * (180/math.pi)
+    metrics['pose_geodesic_deviation_mean_deg'] = float(degrees.mean())
+    metrics['pose_geodesic_deviation_p95_deg'] = float(torch.quantile(degrees.flatten(), .95))
+    metrics['endpoint_error_vs_raw_m'] = float((trans[-1]-raw_trans[-1]).norm())
+    metrics['translation_speed_mean_m_per_s'] = float((trans[1:]-trans[:-1]).norm(dim=-1).mean()*30)
+    if len(trans) >= 3:
+        metrics['translation_acceleration_mean_m_per_s2'] = float((trans[2:]-2*trans[1:-1]+trans[:-2]).norm(dim=-1).mean()*900)
     dump(stage/'motion_metrics.json', {'metrics': metrics,
          'rotation_space': '6D rotation representation, flattened norm',
          'second_difference_time_scaling': 'per-frame; no fps^2 normalization',
@@ -272,6 +285,7 @@ def main(args):
         observations.append({'sequence': seq_name, 'variant': 'baseline', 'video': base['baseline']})
         observations.append({'sequence': seq_name, 'variant': 'stabilized', 'video': base['stabilized']})
         assets = [base['asset']]
+        asset_by_frame = {ref.name: base['asset']}
         if seq_name == 'zju_313_wk2':
             for branch, alpha in [('raw', .25), ('gaussian', .25), ('pose', .25),
                                   ('translation', .25), ('full', .10), ('full', .50), ('full', .80)]:
@@ -289,22 +303,27 @@ def main(args):
                     {'sequence': seq_name, 'reference': frame.name, 'shared_shape': str(shared)})
                 if result:
                     assets.append(result['asset'])
+                    asset_by_frame[frame.name] = result['asset']
                     observations.append({'sequence': seq_name, 'variant': f'keyframe_{i:02}', 'video': result['stabilized']})
             for k in [2, 3, 5]:
                 if len(assets) < k:
                     continue
                 for weighted in [False, True]:
+                    ordered_assets = [asset_by_frame[f.name] for f in frames if f.name in asset_by_frame]
+                    selected_assets = [ordered_assets[i] for i in np.linspace(0, len(ordered_assets)-1, k).round().astype(int)]
                     variant = f'fusion_k{k}_' + ('agreement' if weighted else 'uniform')
                     result = run.stage(seq_name+'/'+variant,
-                        lambda stage, n=k, w=weighted: fusion_stage(model, assets[:n], stage, w),
-                        {'sources': k, 'agreement_confidence': weighted, 'anchor_validation': True})
+                        lambda stage, selected=selected_assets, w=weighted: fusion_stage(model, selected, stage, w),
+                        {'sources': k, 'source_assets': selected_assets, 'agreement_confidence': weighted, 'anchor_validation': True})
                     if result:
                         observations.append({'sequence': seq_name, 'variant': variant, 'video': result['video']})
             if len(assets) >= 3:
+                ordered_assets = [asset_by_frame[f.name] for f in frames if f.name in asset_by_frame]
+                graph_assets = [ordered_assets[i] for i in np.linspace(0, len(ordered_assets)-1, 3).round().astype(int)]
                 for amount in [.1, .25]:
                     variant = f'fusion_graph_{amount}'
                     result = run.stage(seq_name+'/'+variant,
-                        lambda stage, a=amount: fusion_stage(model, assets[:3], stage, True, a),
+                        lambda stage, a=amount: fusion_stage(model, graph_assets, stage, True, a),
                         {'sources': 3, 'graph_color_amount': amount, 'trained': False})
                     if result:
                         observations.append({'sequence': seq_name, 'variant': variant, 'video': result['video']})

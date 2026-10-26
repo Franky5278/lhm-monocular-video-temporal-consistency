@@ -1,0 +1,12 @@
+test_anchor_mismatch_rejected (__main__.FusionInvariants) ... ok
+test_high_confidence_graph_color_unchanged (__main__.FusionInvariants) ... ok
+test_quaternion_antipodes_do_not_cancel (__main__.FusionInvariants) ... ok
+test_scale_geometric_average (__main__.FusionInvariants) ... ok
+test_serialization_preserves_attributes (__main__.FusionInvariants) ... ok
+test_shape_mismatch_rejected (__main__.FusionInvariants) ... ok
+test_single_source_not_called_fusion (__main__.FusionInvariants) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.705s
+
+OK
