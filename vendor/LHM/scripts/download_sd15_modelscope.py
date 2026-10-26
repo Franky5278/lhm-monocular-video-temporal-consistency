@@ -45,7 +45,12 @@ def main() -> None:
     cache_dir.mkdir(parents=True, exist_ok=True)
 
     print(f"[download] model_id={args.model_id}")
-    snapshot = Path(snapshot_download(args.model_id, cache_dir=str(cache_dir))).resolve()
+    # Diffusers loads component weights. Monolithic training checkpoints and
+    # alternative framework exports consume bandwidth without supporting this run.
+    snapshot = Path(snapshot_download(
+        args.model_id, cache_dir=str(cache_dir),
+        ignore_patterns=['*.ckpt', 'v1-5-*.safetensors', '*.msgpack', '*.onnx', '*.pb'],
+    )).resolve()
     print(f"[download] snapshot={snapshot}")
 
     if not has_model_index(snapshot):
