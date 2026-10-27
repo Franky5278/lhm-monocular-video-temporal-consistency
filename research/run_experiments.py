@@ -247,6 +247,13 @@ def main(args):
     np.random.seed(42)
     torch.manual_seed(42)
     torch.cuda.manual_seed_all(42)
+    # LHM builds its loggers through accelerate.logging, which refuses to log
+    # until a distributed state exists; initialise it before the model is built.
+    try:
+        from accelerate import PartialState
+        PartialState()
+    except Exception as exc:  # pragma: no cover - reported, never fatal here
+        print('accelerate init skipped:', exc, flush=True)
     if not torch.cuda.is_available():
         raise RuntimeError('GPU run requested without CUDA')
     os.environ['LHM_HEADLESS'] = '1'
