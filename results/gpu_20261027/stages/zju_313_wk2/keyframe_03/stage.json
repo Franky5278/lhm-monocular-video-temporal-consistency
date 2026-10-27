@@ -1,0 +1,19 @@
+{
+  "status": "success",
+  "started_unix": 1793114758.6635447,
+  "seconds": 19.26478862762451,
+  "config": {
+    "sequence": "zju_313_wk2",
+    "reference": "keyframe_03_frame_000044.jpg",
+    "shared_shape": "/workspace/lhm/results/experiment_v1/zju_313_wk2/shared_betas.json"
+  },
+  "output": {
+    "source_preview": "/workspace/lhm/results/experiment_v1/zju_313_wk2/keyframe_03/source_preview.png",
+    "baseline": "/workspace/lhm/results/experiment_v1/zju_313_wk2/keyframe_03/baseline.mp4",
+    "stabilized": "/workspace/lhm/results/experiment_v1/zju_313_wk2/keyframe_03/stabilized.mp4",
+    "comparison": "/workspace/lhm/results/experiment_v1/zju_313_wk2/keyframe_03/comparison.mp4",
+    "asset": "/workspace/lhm/results/experiment_v1/zju_313_wk2/keyframe_03/canonical.pt"
+  },
+  "peak_allocated_bytes": 13675462144,
+  "peak_reserved_bytes": 14948499456
+}

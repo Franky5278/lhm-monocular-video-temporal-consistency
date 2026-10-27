@@ -1,0 +1,72 @@
+{
+  "status": "success",
+  "started_unix": 1793114837.8809195,
+  "seconds": 1.463571310043335,
+  "config": {
+    "camera_check": {
+      "points": 100,
+      "max_pixel_error": 2.2737367544323206e-13,
+      "translation_conversion": "millimeters to meters",
+      "scope": "camera algebra validation; not avatar pose or quality validation"
+    },
+    "source_pose": "estimated SMPL-X, not GT",
+    "extrinsics": "relative B from source-A coordinates, translations in meters",
+    "distortion": "removed from both views",
+    "intrinsics": [
+      [
+        575.9345177902833,
+        0.0,
+        259.4718815470306
+      ],
+      [
+        0.0,
+        576.0243801781577,
+        252.62898026516928
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "c2w": [
+      [
+        0.8726671033837222,
+        0.2799665481062736,
+        -0.4000885634622931,
+        0.7499232823154053
+      ],
+      [
+        -0.2579683591400069,
+        0.9599762416500195,
+        0.10907768401518254,
+        -0.12180035280091764
+      ],
+      [
+        0.4146136181488449,
+        0.008021683673716019,
+        0.9099621971469818,
+        0.1334615372020098
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ]
+  },
+  "output": {
+    "video": "/workspace/lhm/results/experiment_v1/zju_313_calibrated/camera_B/camera_B.mp4",
+    "frames": 60,
+    "fps": 30,
+    "size": [
+      512,
+      512
+    ],
+    "foreground_coverage_mean": 0.06496842702229817,
+    "foreground_coverage_min": 0.05329132080078125
+  },
+  "peak_allocated_bytes": 9381371392,
+  "peak_reserved_bytes": 9799991296
+}

@@ -1,0 +1,20 @@
+{
+  "status": "success",
+  "started_unix": 1793114667.6054711,
+  "seconds": 38.342448234558105,
+  "config": {
+    "sequence": "zju_390_kick_wk2",
+    "reference": "keyframe_02_frame_000060.jpg",
+    "alpha_pose": 0.25,
+    "alpha_translation": 0.25
+  },
+  "output": {
+    "source_preview": "/workspace/lhm/results/experiment_v1/zju_390_kick_wk2/core/source_preview.png",
+    "baseline": "/workspace/lhm/results/experiment_v1/zju_390_kick_wk2/core/baseline.mp4",
+    "stabilized": "/workspace/lhm/results/experiment_v1/zju_390_kick_wk2/core/stabilized.mp4",
+    "comparison": "/workspace/lhm/results/experiment_v1/zju_390_kick_wk2/core/comparison.mp4",
+    "asset": "/workspace/lhm/results/experiment_v1/zju_390_kick_wk2/core/canonical.pt"
+  },
+  "peak_allocated_bytes": 13675462144,
+  "peak_reserved_bytes": 14948499456
+}

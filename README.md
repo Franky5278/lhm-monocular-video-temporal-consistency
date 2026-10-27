@@ -91,31 +91,40 @@ transparency; they are not used as evidence. See
 
 ```
 research/      headless runner, strict evaluator, cameras, fusion helpers, tests
+scripts/       environment build, weight download, GPU run wrapper, progress writer
 vendor/LHM/    recovered LHM source (original licence and notices retained)
+docs/          reproduction guide, input contract, inventory of what is committed
 reports/       recovery audit, protocol, GPU results, limits
-results/       machine-readable results from the 2026-10-27 GPU run
+results/       67 stage records + metric table from the 2026-10-27 GPU run
 figures/       figures and comparison clips
 evidence/      historical log, hashes, preflight and validation records
 ```
 
+Start here: [`docs/REPRODUCE.md`](docs/REPRODUCE.md) for the end-to-end procedure,
+[`docs/INPUTS.md`](docs/INPUTS.md) for the data contract, and
+[`docs/REPO_CONTENTS.md`](docs/REPO_CONTENTS.md) for what is committed versus fetched.
+
 ## Reproduce
 
 ```bash
-# 1. environment: python 3.10, torch 2.3.0+cu121, compiled pytorch3d /
-#    diff-gaussian-rasterization / simple-knn / mmcv (see reports/02)
-# 2. inputs: three sequences under inputs/<name>/{source_view_A.mp4,
-#    source_view_A_frames/, heldout_view_B.mp4, heldout_view_B_masks/}
-python research/run_experiments.py \
-  --source vendor/LHM --inputs inputs \
-  --checkpoint exps/releases/video_human_benchmark/human-lrm-500M/step_060000 \
-  --out results/experiment_v1 --deadline "$(date +%s --date '+3 hours')" \
-  --sd-model sd15_model --sequences zju_313_wk2,zju_390_kick_wk2
-python research/analyze_results.py --root results/experiment_v1 \
-  --out results/experiment_v1/analysis
+git clone https://github.com/Franky5278/lhm-monocular-video-temporal-consistency.git \
+  /workspace/lhm/project
+cd /workspace/lhm/project
+
+ROOT=/workspace/lhm bash scripts/setup_env.sh        # ~40-60 min, compiles 4 CUDA extensions
+ROOT=/workspace/lhm bash scripts/download_models.sh  # 27 GB of weights + SD 1.5
+# put the inputs in place, see docs/INPUTS.md
+
+LHM_ROOT=/workspace/lhm /workspace/lhm/env_system/bin/python research/preflight.py
+ROOT=/workspace/lhm REPO=/workspace/lhm/project GPU_HOURS=3 bash scripts/run_gpu.sh
+python research/analyze_results.py --root /workspace/lhm/results/experiment_v1 \
+  --out /workspace/lhm/results/experiment_v1/analysis
 ```
 
 Every stage writes `stage.json` with status, seconds, peak allocated/reserved VRAM
-and config, and re-running skips stages that already succeeded.
+and config, and re-running skips stages that already succeeded, so an interrupted run
+resumes instead of restarting. The 67 stage records of the reference run are committed
+under `results/gpu_20261027/stages/`.
 
 ## Limits
 

@@ -1,0 +1,58 @@
+{
+  "prediction": "/workspace/lhm/results/experiment_v1/zju_390_mid10/core/baseline.mp4",
+  "gt": "/workspace/lhm/inputs/zju_390_mid10/heldout_view_B.mp4",
+  "frames": 300,
+  "fps": 30.0,
+  "evaluation_size": [
+    512,
+    512
+  ],
+  "lpips_frames": 300,
+  "temporal_alignment": "equal frame count and fps; corrected single-pass motion extraction",
+  "camera_alignment": "must be established by rendering metadata, not inferred by evaluator",
+  "ci_caution": "Descriptive frame-block intervals; not independent-subject generalization",
+  "metrics": {
+    "psnr_full_db": {
+      "mean": 0.808725039385526,
+      "median": 0.8062503099257108,
+      "std": 0.01156144267438545,
+      "n_frames": 300,
+      "block_bootstrap_95_interval": [
+        0.8059048082590402,
+        0.8117371958645447
+      ]
+    },
+    "ssim_full": {
+      "mean": 0.11831860268304259,
+      "median": 0.11849946317505478,
+      "std": 0.0013783165655157216,
+      "n_frames": 300,
+      "block_bootstrap_95_interval": [
+        0.1179308777144388,
+        0.11865380374820014
+      ]
+    },
+    "psnr_masked_db": null,
+    "lpips_full": {
+      "mean": 0.7864428651332855,
+      "median": 0.7867181599140167,
+      "std": 0.004864913885001257,
+      "n_frames": 300,
+      "block_bootstrap_95_interval": [
+        0.7852191028147936,
+        0.7876316903084516
+      ]
+    },
+    "temporal_signed_delta_l1_0_1": {
+      "mean": 0.0026756906967585203,
+      "median": 0.002633696189150214,
+      "std": 0.0009910403689367825,
+      "n_frames": 299,
+      "block_bootstrap_95_interval": [
+        0.0024274532385154834,
+        0.0029203020211057873
+      ]
+    },
+    "temporal_signed_delta_masked_l1_0_1": null
+  }
+}

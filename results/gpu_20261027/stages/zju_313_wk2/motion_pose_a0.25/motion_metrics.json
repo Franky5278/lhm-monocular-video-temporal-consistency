@@ -1,0 +1,17 @@
+{
+  "metrics": {
+    "jitter_pose": 0.028976676985621452,
+    "jitter_trans": 0.0010304251918569207,
+    "deviation_pose": 0.4311598837375641,
+    "deviation_trans": 0.001068714540451765,
+    "endpoint_displacement_m": 0.07919315993785858,
+    "pose_geodesic_deviation_mean_deg": 2.044358015060425,
+    "pose_geodesic_deviation_p95_deg": 5.775761604309082,
+    "endpoint_error_vs_raw_m": 0.0,
+    "translation_speed_mean_m_per_s": 0.08358369767665863,
+    "translation_acceleration_mean_m_per_s2": 0.9273826479911804
+  },
+  "rotation_space": "6D rotation representation, flattened norm",
+  "second_difference_time_scaling": "per-frame; no fps^2 normalization",
+  "jitter_note": "Second finite difference, an acceleration proxy rather than third-derivative jerk"
+}

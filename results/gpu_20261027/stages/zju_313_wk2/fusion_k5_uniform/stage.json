@@ -1,0 +1,48 @@
+{
+  "status": "success",
+  "started_unix": 1793114805.4204688,
+  "seconds": 1.4685893058776855,
+  "config": {
+    "sources": 5,
+    "source_assets": [
+      "/workspace/lhm/results/experiment_v1/zju_313_wk2/keyframe_00/canonical.pt",
+      "/workspace/lhm/results/experiment_v1/zju_313_wk2/keyframe_01/canonical.pt",
+      "/workspace/lhm/results/experiment_v1/zju_313_wk2/core/canonical.pt",
+      "/workspace/lhm/results/experiment_v1/zju_313_wk2/keyframe_03/canonical.pt",
+      "/workspace/lhm/results/experiment_v1/zju_313_wk2/keyframe_04/canonical.pt"
+    ],
+    "agreement_confidence": false,
+    "anchor_validation": true
+  },
+  "output": {
+    "video": "/workspace/lhm/results/experiment_v1/zju_313_wk2/fusion_k5_uniform/render.mp4",
+    "frames": 60,
+    "fps": 30,
+    "size": [
+      512,
+      512
+    ],
+    "foreground_coverage_mean": 0.04343077341715495,
+    "foreground_coverage_min": 0.039058685302734375,
+    "asset": "/workspace/lhm/results/experiment_v1/zju_313_wk2/fusion_k5_uniform/fused_canonical.pt",
+    "reload_attributes_exact": true,
+    "fusion": {
+      "sources": 5,
+      "frame_weights": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "agreement_scale_m": 1000000000.0,
+      "correspondence": "canonical query coordinates and shared shape verified",
+      "anchor_max_deviation_m": 0.0,
+      "confidence": "cross-source offset agreement proxy; not visibility",
+      "method": "weighted linear attributes, hemisphere-corrected quaternion, log scale"
+    },
+    "refinement": null
+  },
+  "peak_allocated_bytes": 9381619712,
+  "peak_reserved_bytes": 9799991296
+}

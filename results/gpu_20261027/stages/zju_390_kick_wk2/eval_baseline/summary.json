@@ -1,0 +1,96 @@
+{
+  "prediction": "/workspace/lhm/results/experiment_v1/zju_390_kick_wk2/core/baseline.mp4",
+  "gt": "/workspace/lhm/inputs/zju_390_kick_wk2/heldout_view_B.mp4",
+  "frames": 120,
+  "fps": 30.0,
+  "evaluation_size": [
+    512,
+    512
+  ],
+  "lpips_frames": 120,
+  "temporal_alignment": "equal frame count and fps; corrected single-pass motion extraction",
+  "camera_alignment": "must be established by rendering metadata, not inferred by evaluator",
+  "ci_caution": "Descriptive frame-block intervals; not independent-subject generalization",
+  "metrics": {
+    "psnr_full_db": {
+      "mean": 0.6693636407099511,
+      "median": 0.6659328379711645,
+      "std": 0.006994869795451033,
+      "n_frames": 120,
+      "block_bootstrap_95_interval": [
+        0.6664949791743922,
+        0.6721606201186473
+      ]
+    },
+    "ssim_full": {
+      "mean": 0.0921949347556817,
+      "median": 0.09224943593919596,
+      "std": 0.0006186831087506632,
+      "n_frames": 120,
+      "block_bootstrap_95_interval": [
+        0.09197421933901526,
+        0.09240354201206157
+      ]
+    },
+    "psnr_masked_db": {
+      "mean": 3.2517463846110006,
+      "median": 3.3523763868801386,
+      "std": 0.332253140204096,
+      "n_frames": 120,
+      "block_bootstrap_95_interval": [
+        3.120721494522619,
+        3.392134049671884
+      ]
+    },
+    "psnr_gt_bbox_db": {
+      "mean": 2.6615874959259975,
+      "median": 2.6729589790568653,
+      "std": 0.15071643742846097,
+      "n_frames": 120,
+      "block_bootstrap_95_interval": [
+        2.5996246900883393,
+        2.7245767867251796
+      ]
+    },
+    "psnr_independent_bbox_aligned_db": {
+      "mean": 4.1171227134939645,
+      "median": 4.1048692697779146,
+      "std": 0.14039903912105484,
+      "n_frames": 120,
+      "block_bootstrap_95_interval": [
+        4.0598842804853374,
+        4.175524230885297
+      ]
+    },
+    "lpips_full": {
+      "mean": 0.777773946026961,
+      "median": 0.7771490514278412,
+      "std": 0.004814062084994805,
+      "n_frames": 120,
+      "block_bootstrap_95_interval": [
+        0.7761636674155792,
+        0.7794357569267353
+      ]
+    },
+    "temporal_signed_delta_l1_0_1": {
+      "mean": 0.0020935232848899453,
+      "median": 0.002028027782216668,
+      "std": 0.0006673345768704338,
+      "n_frames": 119,
+      "block_bootstrap_95_interval": [
+        0.001861075870766101,
+        0.002325158233480663
+      ]
+    },
+    "temporal_signed_delta_masked_l1_0_1": {
+      "mean": 0.01833780262494037,
+      "median": 0.017453448846936226,
+      "std": 0.006403731566108376,
+      "n_frames": 119,
+      "block_bootstrap_95_interval": [
+        0.01583713005265581,
+        0.020894711278142544
+      ]
+    }
+  }
+}

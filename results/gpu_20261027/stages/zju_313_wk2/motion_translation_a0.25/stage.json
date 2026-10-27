@@ -1,0 +1,35 @@
+{
+  "status": "success",
+  "started_unix": 1793114711.450672,
+  "seconds": 1.4466159343719482,
+  "config": {
+    "branch": "translation",
+    "alpha": 0.25,
+    "source": "same canonical asset and raw fitted motion"
+  },
+  "output": {
+    "video": "/workspace/lhm/results/experiment_v1/zju_313_wk2/motion_translation_a0.25/render.mp4",
+    "frames": 60,
+    "fps": 30,
+    "size": [
+      512,
+      512
+    ],
+    "foreground_coverage_mean": 0.04223486582438151,
+    "foreground_coverage_min": 0.03812408447265625,
+    "motion_metrics": {
+      "jitter_pose": 0.11680369824171066,
+      "jitter_trans": 0.0004117676289752126,
+      "deviation_pose": 0.14978398382663727,
+      "deviation_trans": 0.005068092606961727,
+      "endpoint_displacement_m": 0.07919315993785858,
+      "pose_geodesic_deviation_mean_deg": 0.6174796223640442,
+      "pose_geodesic_deviation_p95_deg": 2.028012990951538,
+      "endpoint_error_vs_raw_m": 0.0,
+      "translation_speed_mean_m_per_s": 0.07186906039714813,
+      "translation_acceleration_mean_m_per_s2": 0.37059086561203003
+    }
+  },
+  "peak_allocated_bytes": 9381619712,
+  "peak_reserved_bytes": 9799991296
+}

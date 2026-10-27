@@ -1,0 +1,109 @@
+{
+  "status": "success",
+  "started_unix": 1793115278.3419812,
+  "seconds": 16.790509462356567,
+  "config": {
+    "variant": "diffusion_s0.15_steps20",
+    "size": 512,
+    "lpips": "all frames",
+    "camera": "default LHM; independent-bbox alignment reported separately"
+  },
+  "output": {
+    "prediction": "/workspace/lhm/results/experiment_v1/zju_390_kick_wk2/diffusion_s0.15_steps20/restored.mp4",
+    "gt": "/workspace/lhm/inputs/zju_390_kick_wk2/heldout_view_B.mp4",
+    "frames": 120,
+    "fps": 30.0,
+    "evaluation_size": [
+      512,
+      512
+    ],
+    "lpips_frames": 120,
+    "temporal_alignment": "equal frame count and fps; corrected single-pass motion extraction",
+    "camera_alignment": "must be established by rendering metadata, not inferred by evaluator",
+    "ci_caution": "Descriptive frame-block intervals; not independent-subject generalization",
+    "metrics": {
+      "psnr_full_db": {
+        "mean": 0.8647998211156513,
+        "median": 0.8645077492582225,
+        "std": 0.011958810059746276,
+        "n_frames": 120,
+        "block_bootstrap_95_interval": [
+          0.8619406654679191,
+          0.8675093874211136
+        ]
+      },
+      "ssim_full": {
+        "mean": 0.09156875611067491,
+        "median": 0.09155684003857412,
+        "std": 0.0011386598233971577,
+        "n_frames": 120,
+        "block_bootstrap_95_interval": [
+          0.09130319873625616,
+          0.09182637347428413
+        ]
+      },
+      "psnr_masked_db": {
+        "mean": 3.50351519293554,
+        "median": 3.604215942116589,
+        "std": 0.333663946346197,
+        "n_frames": 120,
+        "block_bootstrap_95_interval": [
+          3.369892532741038,
+          3.6413188616863543
+        ]
+      },
+      "psnr_gt_bbox_db": {
+        "mean": 2.889672652943698,
+        "median": 2.9053670657869253,
+        "std": 0.16104938990547232,
+        "n_frames": 120,
+        "block_bootstrap_95_interval": [
+          2.8224344202877907,
+          2.956691045320082
+        ]
+      },
+      "psnr_independent_bbox_aligned_db": {
+        "mean": 1.6266079904939803,
+        "median": 1.5661975086788433,
+        "std": 0.246567854133735,
+        "n_frames": 120,
+        "block_bootstrap_95_interval": [
+          1.5936751183924385,
+          1.6666145999800752
+        ]
+      },
+      "lpips_full": {
+        "mean": 0.7834894026319186,
+        "median": 0.78282830119133,
+        "std": 0.0052151607602159995,
+        "n_frames": 120,
+        "block_bootstrap_95_interval": [
+          0.7818756279970209,
+          0.7852191057428718
+        ]
+      },
+      "temporal_signed_delta_l1_0_1": {
+        "mean": 0.008396844626130426,
+        "median": 0.008396508172154427,
+        "std": 0.0006834170430103752,
+        "n_frames": 119,
+        "block_bootstrap_95_interval": [
+          0.008177344200588731,
+          0.008582282288269322
+        ]
+      },
+      "temporal_signed_delta_masked_l1_0_1": {
+        "mean": 0.03796126665312703,
+        "median": 0.039608243852853775,
+        "std": 0.00730640285225335,
+        "n_frames": 119,
+        "block_bootstrap_95_interval": [
+          0.03523543107199698,
+          0.04081259345275765
+        ]
+      }
+    }
+  },
+  "peak_allocated_bytes": 89296384,
+  "peak_reserved_bytes": 792723456
+}

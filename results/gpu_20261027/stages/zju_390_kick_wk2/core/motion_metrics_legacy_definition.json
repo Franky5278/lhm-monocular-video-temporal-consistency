@@ -1,0 +1,29 @@
+{
+  "rows": [
+    [
+      "single_keyframe_motion_baseline",
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN
+    ],
+    [
+      "temporal_stabilized_motion",
+      NaN,
+      NaN,
+      NaN,
+      NaN,
+      NaN
+    ]
+  ],
+  "columns": [
+    "variant",
+    "jitter_pose_6d_second_difference",
+    "jitter_translation_second_difference",
+    "endpoint_displacement_m",
+    "pose_deviation_6d_norm",
+    "translation_deviation_m"
+  ],
+  "note": "Legacy field drift_trans is endpoint displacement, not a GT drift error."
+}

@@ -1,0 +1,29 @@
+{
+  "status": "success",
+  "started_unix": 1793114976.1498253,
+  "seconds": 33.62435340881348,
+  "config": {
+    "strength": 0.15,
+    "steps": 20,
+    "effective_steps": 3,
+    "paired_seed_base": 42,
+    "frames": "all",
+    "trained": false
+  },
+  "output": {
+    "requested": true,
+    "active": true,
+    "status": "prototype_active",
+    "method": "diffusers_img2img",
+    "model_path": "/workspace/lhm/sd15_model",
+    "output_path": "/workspace/lhm/results/experiment_v1/zju_390_kick_wk2/diffusion_s0.15_steps20/restored.mp4",
+    "processed_frames": 120,
+    "total_frames": 120,
+    "note": "pretrained diffusers img2img restored 120/120 frame(s); no training performed",
+    "seed": 42,
+    "seed_policy": "seed + frame_index, paired across configurations",
+    "effective_denoising_steps": 3
+  },
+  "peak_allocated_bytes": 2795767808,
+  "peak_reserved_bytes": 3080716288
+}
