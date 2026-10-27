@@ -46,10 +46,19 @@ class FusionInvariants(unittest.TestCase):
         self.assertTrue(torch.allclose(f['gs'][0]['rotation'], a['gs'][0]['rotation']))
 
     def test_anchor_mismatch_rejected(self):
+        # Beyond the documented 1 cm tolerance the correspondence is refused.
         a, b = fixture(), fixture()
-        b['query_points'][0, 0, 0] += .001
+        b['query_points'][0, 0, 0] += .05
         with self.assertRaises(ValueError):
             fuse_bundles([a, b])
+
+    def test_anchor_deviation_within_tolerance_is_measured(self):
+        # Sub-centimetre drift is accepted and the measured value is recorded,
+        # so a reviewer can see how well the anchors actually agreed.
+        a, b = fixture(), fixture()
+        b['query_points'][0, 0, 0] += .001
+        fused = fuse_bundles([a, b])
+        self.assertAlmostEqual(fused['metadata']['fusion']['anchor_max_deviation_m'], .001, places=6)
 
     def test_shape_mismatch_rejected(self):
         a, b = fixture(), fixture()
