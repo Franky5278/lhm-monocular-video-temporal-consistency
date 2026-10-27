@@ -43,9 +43,14 @@ def collect(root: Path) -> list[dict]:
         out = data.get("output") or {}
         if isinstance(out, dict):
             mm = out.get("motion_metrics") or {}
-            for key in ("jitter_pose_6d_second_difference", "jitter_translation_second_difference",
-                        "pose_deviation_6d_norm", "translation_deviation_m",
-                        "pose_geodesic_deviation_mean_deg", "translation_speed_mean_m_per_s",
+            for src, dst in (("jitter_pose", "jitter_pose_6d_second_difference"),
+                             ("jitter_trans", "jitter_translation_second_difference"),
+                             ("deviation_pose", "pose_deviation_6d_norm"),
+                             ("deviation_trans", "translation_deviation_m")):
+                if src in mm:
+                    row[dst] = mm[src]
+            for key in ("pose_geodesic_deviation_mean_deg",
+                        "translation_speed_mean_m_per_s",
                         "endpoint_displacement_m"):
                 if key in mm:
                     row[key] = mm[key]

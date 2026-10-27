@@ -268,7 +268,17 @@ def main(args):
                            'src_head_size': 112, 'render_size': 512,
                            'motion_video_read_fps': 30})
     app.download_geo_files()
-    model = app._build_model(cfg).cuda().eval()
+    # Build directly: app._build_model chains .half() whose return value is not
+    # guaranteed on this wrapper class, which silently produced a None model.
+    from LHM.models import model_dict
+    from LHM.utils.hf_hub import wrap_model_hub
+    hf_model_cls = wrap_model_hub(model_dict['human_lrm_sapdino_bh_sd3_5'])
+    model = hf_model_cls.from_pretrained(str(checkpoint))
+    model.half()
+    model.to('cuda')
+    model.eval()
+    if model is None:
+        raise RuntimeError('Model construction returned None')
     core = app.demo_lhm(model, None, cfg)
     run = Run(args.out, args.deadline)
     dump(run.root/'run_config.json', {**vars(args), 'seed': 42,

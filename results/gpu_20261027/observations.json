@@ -1,0 +1,172 @@
+[
+  {
+    "sequence": "zju_313_calibrated",
+    "variant": "camera_B_calibrated_gaussian_motion",
+    "video": "/workspace/lhm/results/experiment_v1/zju_313_calibrated/camera_B/camera_B.mp4"
+  },
+  {
+    "sequence": "zju_313_wk2",
+    "variant": "baseline",
+    "video": "/workspace/lhm/results/experiment_v1/zju_313_wk2/core/baseline.mp4"
+  },
+  {
+    "sequence": "zju_313_wk2",
+    "variant": "diffusion_s0.15_steps12",
+    "video": "/workspace/lhm/results/experiment_v1/zju_313_wk2/diffusion_s0.15_steps12/restored.mp4"
+  },
+  {
+    "sequence": "zju_313_wk2",
+    "variant": "diffusion_s0.15_steps20",
+    "video": "/workspace/lhm/results/experiment_v1/zju_313_wk2/diffusion_s0.15_steps20/restored.mp4"
+  },
+  {
+    "sequence": "zju_313_wk2",
+    "variant": "diffusion_s0.1_steps12",
+    "video": "/workspace/lhm/results/experiment_v1/zju_313_wk2/diffusion_s0.1_steps12/restored.mp4"
+  },
+  {
+    "sequence": "zju_313_wk2",
+    "variant": "diffusion_s0.1_steps20",
+    "video": "/workspace/lhm/results/experiment_v1/zju_313_wk2/diffusion_s0.1_steps20/restored.mp4"
+  },
+  {
+    "sequence": "zju_313_wk2",
+    "variant": "fusion_graph_0.1",
+    "video": "/workspace/lhm/results/experiment_v1/zju_313_wk2/fusion_graph_0.1/render.mp4"
+  },
+  {
+    "sequence": "zju_313_wk2",
+    "variant": "fusion_graph_0.25",
+    "video": "/workspace/lhm/results/experiment_v1/zju_313_wk2/fusion_graph_0.25/render.mp4"
+  },
+  {
+    "sequence": "zju_313_wk2",
+    "variant": "fusion_k2_agreement",
+    "video": "/workspace/lhm/results/experiment_v1/zju_313_wk2/fusion_k2_agreement/render.mp4"
+  },
+  {
+    "sequence": "zju_313_wk2",
+    "variant": "fusion_k2_uniform",
+    "video": "/workspace/lhm/results/experiment_v1/zju_313_wk2/fusion_k2_uniform/render.mp4"
+  },
+  {
+    "sequence": "zju_313_wk2",
+    "variant": "fusion_k3_agreement",
+    "video": "/workspace/lhm/results/experiment_v1/zju_313_wk2/fusion_k3_agreement/render.mp4"
+  },
+  {
+    "sequence": "zju_313_wk2",
+    "variant": "fusion_k3_uniform",
+    "video": "/workspace/lhm/results/experiment_v1/zju_313_wk2/fusion_k3_uniform/render.mp4"
+  },
+  {
+    "sequence": "zju_313_wk2",
+    "variant": "fusion_k5_agreement",
+    "video": "/workspace/lhm/results/experiment_v1/zju_313_wk2/fusion_k5_agreement/render.mp4"
+  },
+  {
+    "sequence": "zju_313_wk2",
+    "variant": "fusion_k5_uniform",
+    "video": "/workspace/lhm/results/experiment_v1/zju_313_wk2/fusion_k5_uniform/render.mp4"
+  },
+  {
+    "sequence": "zju_313_wk2",
+    "variant": "keyframe_00",
+    "video": "/workspace/lhm/results/experiment_v1/zju_313_wk2/keyframe_00/stabilized.mp4"
+  },
+  {
+    "sequence": "zju_313_wk2",
+    "variant": "keyframe_01",
+    "video": "/workspace/lhm/results/experiment_v1/zju_313_wk2/keyframe_01/stabilized.mp4"
+  },
+  {
+    "sequence": "zju_313_wk2",
+    "variant": "keyframe_03",
+    "video": "/workspace/lhm/results/experiment_v1/zju_313_wk2/keyframe_03/stabilized.mp4"
+  },
+  {
+    "sequence": "zju_313_wk2",
+    "variant": "keyframe_04",
+    "video": "/workspace/lhm/results/experiment_v1/zju_313_wk2/keyframe_04/stabilized.mp4"
+  },
+  {
+    "sequence": "zju_313_wk2",
+    "variant": "motion_full_a0.1",
+    "video": "/workspace/lhm/results/experiment_v1/zju_313_wk2/motion_full_a0.1/render.mp4"
+  },
+  {
+    "sequence": "zju_313_wk2",
+    "variant": "motion_full_a0.5",
+    "video": "/workspace/lhm/results/experiment_v1/zju_313_wk2/motion_full_a0.5/render.mp4"
+  },
+  {
+    "sequence": "zju_313_wk2",
+    "variant": "motion_full_a0.8",
+    "video": "/workspace/lhm/results/experiment_v1/zju_313_wk2/motion_full_a0.8/render.mp4"
+  },
+  {
+    "sequence": "zju_313_wk2",
+    "variant": "motion_gaussian_a0.25",
+    "video": "/workspace/lhm/results/experiment_v1/zju_313_wk2/motion_gaussian_a0.25/render.mp4"
+  },
+  {
+    "sequence": "zju_313_wk2",
+    "variant": "motion_pose_a0.25",
+    "video": "/workspace/lhm/results/experiment_v1/zju_313_wk2/motion_pose_a0.25/render.mp4"
+  },
+  {
+    "sequence": "zju_313_wk2",
+    "variant": "motion_raw_a0.25",
+    "video": "/workspace/lhm/results/experiment_v1/zju_313_wk2/motion_raw_a0.25/render.mp4"
+  },
+  {
+    "sequence": "zju_313_wk2",
+    "variant": "motion_translation_a0.25",
+    "video": "/workspace/lhm/results/experiment_v1/zju_313_wk2/motion_translation_a0.25/render.mp4"
+  },
+  {
+    "sequence": "zju_313_wk2",
+    "variant": "stabilized",
+    "video": "/workspace/lhm/results/experiment_v1/zju_313_wk2/core/stabilized.mp4"
+  },
+  {
+    "sequence": "zju_390_kick_wk2",
+    "variant": "baseline",
+    "video": "/workspace/lhm/results/experiment_v1/zju_390_kick_wk2/core/baseline.mp4"
+  },
+  {
+    "sequence": "zju_390_kick_wk2",
+    "variant": "diffusion_s0.15_steps12",
+    "video": "/workspace/lhm/results/experiment_v1/zju_390_kick_wk2/diffusion_s0.15_steps12/restored.mp4"
+  },
+  {
+    "sequence": "zju_390_kick_wk2",
+    "variant": "diffusion_s0.15_steps20",
+    "video": "/workspace/lhm/results/experiment_v1/zju_390_kick_wk2/diffusion_s0.15_steps20/restored.mp4"
+  },
+  {
+    "sequence": "zju_390_kick_wk2",
+    "variant": "diffusion_s0.1_steps12",
+    "video": "/workspace/lhm/results/experiment_v1/zju_390_kick_wk2/diffusion_s0.1_steps12/restored.mp4"
+  },
+  {
+    "sequence": "zju_390_kick_wk2",
+    "variant": "diffusion_s0.1_steps20",
+    "video": "/workspace/lhm/results/experiment_v1/zju_390_kick_wk2/diffusion_s0.1_steps20/restored.mp4"
+  },
+  {
+    "sequence": "zju_390_kick_wk2",
+    "variant": "stabilized",
+    "video": "/workspace/lhm/results/experiment_v1/zju_390_kick_wk2/core/stabilized.mp4"
+  },
+  {
+    "sequence": "zju_390_mid10",
+    "variant": "baseline",
+    "video": "/workspace/lhm/results/experiment_v1/zju_390_mid10/core/baseline.mp4"
+  },
+  {
+    "sequence": "zju_390_mid10",
+    "variant": "stabilized",
+    "video": "/workspace/lhm/results/experiment_v1/zju_390_mid10/core/stabilized.mp4"
+  }
+]

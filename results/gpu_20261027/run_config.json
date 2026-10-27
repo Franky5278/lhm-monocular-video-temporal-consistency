@@ -1,0 +1,18 @@
+{
+  "source": "/workspace/lhm/LHM",
+  "inputs": "/workspace/lhm/inputs",
+  "checkpoint": "/workspace/lhm/LHM/exps/releases/video_human_benchmark/human-lrm-500M/step_060000",
+  "out": "/workspace/lhm/results/experiment_v1",
+  "sd_model": "/workspace/lhm/sd15_model",
+  "sequences": "zju_390_mid10",
+  "deadline": 1793122415.0,
+  "seed": 42,
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "torch": "2.3.0+cu121",
+  "model_training": false,
+  "evaluation_views_used_for_selection": false,
+  "pending": [
+    "trained 3D diffusion",
+    "optimization-method baselines"
+  ]
+}

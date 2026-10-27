@@ -1,0 +1,337 @@
+[
+ {
+  "stage": "zju_313_calibrated\\camera_B",
+  "status": "success",
+  "seconds": 1.5
+ },
+ {
+  "stage": "zju_313_calibrated\\core",
+  "status": "success",
+  "seconds": 19.8
+ },
+ {
+  "stage": "zju_313_calibrated\\eval_camera_B_calibrated_gaussian_motion",
+  "status": "success",
+  "seconds": 18.9
+ },
+ {
+  "stage": "zju_313_calibrated\\prepare",
+  "status": "success",
+  "seconds": 4.2
+ },
+ {
+  "stage": "zju_313_wk2\\core",
+  "status": "success",
+  "seconds": 20.8
+ },
+ {
+  "stage": "zju_313_wk2\\diffusion_s0.15_steps12",
+  "status": "success",
+  "seconds": 11.9
+ },
+ {
+  "stage": "zju_313_wk2\\diffusion_s0.15_steps20",
+  "status": "success",
+  "seconds": 17.9
+ },
+ {
+  "stage": "zju_313_wk2\\diffusion_s0.1_steps12",
+  "status": "success",
+  "seconds": 15.5
+ },
+ {
+  "stage": "zju_313_wk2\\diffusion_s0.1_steps20",
+  "status": "success",
+  "seconds": 14.7
+ },
+ {
+  "stage": "zju_313_wk2\\eval_baseline",
+  "status": "success",
+  "seconds": 7.9
+ },
+ {
+  "stage": "zju_313_wk2\\eval_diffusion_s0.15_steps12",
+  "status": "success",
+  "seconds": 8.4
+ },
+ {
+  "stage": "zju_313_wk2\\eval_diffusion_s0.15_steps20",
+  "status": "success",
+  "seconds": 8.2
+ },
+ {
+  "stage": "zju_313_wk2\\eval_diffusion_s0.1_steps12",
+  "status": "success",
+  "seconds": 8.3
+ },
+ {
+  "stage": "zju_313_wk2\\eval_diffusion_s0.1_steps20",
+  "status": "success",
+  "seconds": 8.3
+ },
+ {
+  "stage": "zju_313_wk2\\eval_fusion_graph_0.1",
+  "status": "success",
+  "seconds": 8.2
+ },
+ {
+  "stage": "zju_313_wk2\\eval_fusion_graph_0.25",
+  "status": "success",
+  "seconds": 8.4
+ },
+ {
+  "stage": "zju_313_wk2\\eval_fusion_k2_agreement",
+  "status": "success",
+  "seconds": 8.0
+ },
+ {
+  "stage": "zju_313_wk2\\eval_fusion_k2_uniform",
+  "status": "success",
+  "seconds": 8.1
+ },
+ {
+  "stage": "zju_313_wk2\\eval_fusion_k3_agreement",
+  "status": "success",
+  "seconds": 8.2
+ },
+ {
+  "stage": "zju_313_wk2\\eval_fusion_k3_uniform",
+  "status": "success",
+  "seconds": 8.3
+ },
+ {
+  "stage": "zju_313_wk2\\eval_fusion_k5_agreement",
+  "status": "success",
+  "seconds": 8.0
+ },
+ {
+  "stage": "zju_313_wk2\\eval_fusion_k5_uniform",
+  "status": "success",
+  "seconds": 8.0
+ },
+ {
+  "stage": "zju_313_wk2\\eval_keyframe_00",
+  "status": "success",
+  "seconds": 8.1
+ },
+ {
+  "stage": "zju_313_wk2\\eval_keyframe_01",
+  "status": "success",
+  "seconds": 8.3
+ },
+ {
+  "stage": "zju_313_wk2\\eval_keyframe_03",
+  "status": "success",
+  "seconds": 8.4
+ },
+ {
+  "stage": "zju_313_wk2\\eval_keyframe_04",
+  "status": "success",
+  "seconds": 8.1
+ },
+ {
+  "stage": "zju_313_wk2\\eval_motion_full_a0.1",
+  "status": "success",
+  "seconds": 8.1
+ },
+ {
+  "stage": "zju_313_wk2\\eval_motion_full_a0.5",
+  "status": "success",
+  "seconds": 8.3
+ },
+ {
+  "stage": "zju_313_wk2\\eval_motion_full_a0.8",
+  "status": "success",
+  "seconds": 7.9
+ },
+ {
+  "stage": "zju_313_wk2\\eval_motion_gaussian_a0.25",
+  "status": "success",
+  "seconds": 8.1
+ },
+ {
+  "stage": "zju_313_wk2\\eval_motion_pose_a0.25",
+  "status": "success",
+  "seconds": 8.2
+ },
+ {
+  "stage": "zju_313_wk2\\eval_motion_raw_a0.25",
+  "status": "success",
+  "seconds": 8.2
+ },
+ {
+  "stage": "zju_313_wk2\\eval_motion_translation_a0.25",
+  "status": "success",
+  "seconds": 8.3
+ },
+ {
+  "stage": "zju_313_wk2\\eval_stabilized",
+  "status": "success",
+  "seconds": 8.2
+ },
+ {
+  "stage": "zju_313_wk2\\fusion_graph_0.1",
+  "status": "success",
+  "seconds": 1.6
+ },
+ {
+  "stage": "zju_313_wk2\\fusion_graph_0.25",
+  "status": "success",
+  "seconds": 1.6
+ },
+ {
+  "stage": "zju_313_wk2\\fusion_k2_agreement",
+  "status": "success",
+  "seconds": 1.5
+ },
+ {
+  "stage": "zju_313_wk2\\fusion_k2_uniform",
+  "status": "success",
+  "seconds": 1.4
+ },
+ {
+  "stage": "zju_313_wk2\\fusion_k3_agreement",
+  "status": "success",
+  "seconds": 1.5
+ },
+ {
+  "stage": "zju_313_wk2\\fusion_k3_uniform",
+  "status": "success",
+  "seconds": 1.5
+ },
+ {
+  "stage": "zju_313_wk2\\fusion_k5_agreement",
+  "status": "success",
+  "seconds": 1.5
+ },
+ {
+  "stage": "zju_313_wk2\\fusion_k5_uniform",
+  "status": "success",
+  "seconds": 1.5
+ },
+ {
+  "stage": "zju_313_wk2\\keyframe_00",
+  "status": "success",
+  "seconds": 19.6
+ },
+ {
+  "stage": "zju_313_wk2\\keyframe_01",
+  "status": "success",
+  "seconds": 19.4
+ },
+ {
+  "stage": "zju_313_wk2\\keyframe_03",
+  "status": "success",
+  "seconds": 19.3
+ },
+ {
+  "stage": "zju_313_wk2\\keyframe_04",
+  "status": "success",
+  "seconds": 19.3
+ },
+ {
+  "stage": "zju_313_wk2\\motion_full_a0.1",
+  "status": "success",
+  "seconds": 1.5
+ },
+ {
+  "stage": "zju_313_wk2\\motion_full_a0.5",
+  "status": "success",
+  "seconds": 1.5
+ },
+ {
+  "stage": "zju_313_wk2\\motion_full_a0.8",
+  "status": "success",
+  "seconds": 1.5
+ },
+ {
+  "stage": "zju_313_wk2\\motion_gaussian_a0.25",
+  "status": "success",
+  "seconds": 1.4
+ },
+ {
+  "stage": "zju_313_wk2\\motion_pose_a0.25",
+  "status": "success",
+  "seconds": 1.5
+ },
+ {
+  "stage": "zju_313_wk2\\motion_raw_a0.25",
+  "status": "success",
+  "seconds": 1.6
+ },
+ {
+  "stage": "zju_313_wk2\\motion_translation_a0.25",
+  "status": "success",
+  "seconds": 1.4
+ },
+ {
+  "stage": "zju_390_kick_wk2\\core",
+  "status": "success",
+  "seconds": 38.3
+ },
+ {
+  "stage": "zju_390_kick_wk2\\diffusion_s0.15_steps12",
+  "status": "success",
+  "seconds": 22.3
+ },
+ {
+  "stage": "zju_390_kick_wk2\\diffusion_s0.15_steps20",
+  "status": "success",
+  "seconds": 33.6
+ },
+ {
+  "stage": "zju_390_kick_wk2\\diffusion_s0.1_steps12",
+  "status": "success",
+  "seconds": 22.1
+ },
+ {
+  "stage": "zju_390_kick_wk2\\diffusion_s0.1_steps20",
+  "status": "success",
+  "seconds": 28.6
+ },
+ {
+  "stage": "zju_390_kick_wk2\\eval_baseline",
+  "status": "success",
+  "seconds": 16.9
+ },
+ {
+  "stage": "zju_390_kick_wk2\\eval_diffusion_s0.15_steps12",
+  "status": "success",
+  "seconds": 16.3
+ },
+ {
+  "stage": "zju_390_kick_wk2\\eval_diffusion_s0.15_steps20",
+  "status": "success",
+  "seconds": 16.8
+ },
+ {
+  "stage": "zju_390_kick_wk2\\eval_diffusion_s0.1_steps12",
+  "status": "success",
+  "seconds": 16.1
+ },
+ {
+  "stage": "zju_390_kick_wk2\\eval_diffusion_s0.1_steps20",
+  "status": "success",
+  "seconds": 16.4
+ },
+ {
+  "stage": "zju_390_kick_wk2\\eval_stabilized",
+  "status": "success",
+  "seconds": 16.4
+ },
+ {
+  "stage": "zju_390_mid10\\core",
+  "status": "success",
+  "seconds": 36.0
+ },
+ {
+  "stage": "zju_390_mid10\\eval_baseline",
+  "status": "success",
+  "seconds": 33.7
+ },
+ {
+  "stage": "zju_390_mid10\\eval_stabilized",
+  "status": "success",
+  "seconds": 32.8
+ }
+]
