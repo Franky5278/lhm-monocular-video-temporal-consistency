@@ -271,7 +271,12 @@ def main(args):
         'pending': ['trained 3D diffusion', 'optimization-method baselines']})
     observations = []
     calibrated_observations = []
-    for seq_name in ['zju_313_wk2', 'zju_390_kick_wk2', 'zju_390_mid10']:
+    wanted = [s.strip() for s in (getattr(args, 'sequences', '') or '').split(',') if s.strip()]
+    order = [s for s in ['zju_313_wk2', 'zju_390_kick_wk2', 'zju_390_mid10']
+             if not wanted or s in wanted]
+    bases = {}
+    # Phase 1: faithful baseline and stabilized reconstruction per sequence.
+    for seq_name in order:
         seq = Path(args.inputs)/seq_name
         frames = sorted((seq/'source_view_A_frames').glob('*.jpg'))
         if not frames:
@@ -282,51 +287,55 @@ def main(args):
         base = run.stage(seq_name+'/core', lambda stage: core_run(app, core, seq, ref, stage, shared), config)
         if not base:
             continue
+        bases[seq_name] = (seq, frames, ref, base, shared)
         observations.append({'sequence': seq_name, 'variant': 'baseline', 'video': base['baseline']})
         observations.append({'sequence': seq_name, 'variant': 'stabilized', 'video': base['stabilized']})
+    # Phase 2: ablations, multi-keyframe reconstruction and fusion on the retained short clip.
+    if 'zju_313_wk2' in bases and run.allowed(reserve=1800):
+        seq_name = 'zju_313_wk2'
+        seq, frames, ref, base, shared = bases[seq_name]
         assets = [base['asset']]
         asset_by_frame = {ref.name: base['asset']}
-        if seq_name == 'zju_313_wk2':
-            for branch, alpha in [('raw', .25), ('gaussian', .25), ('pose', .25),
-                                  ('translation', .25), ('full', .10), ('full', .50), ('full', .80)]:
-                variant = f'motion_{branch}_a{alpha}'
+        for branch, alpha in [('raw', .25), ('gaussian', .25), ('pose', .25),
+                              ('translation', .25), ('full', .10), ('full', .50), ('full', .80)]:
+            variant = f'motion_{branch}_a{alpha}'
+            result = run.stage(seq_name+'/'+variant,
+                lambda stage, a=alpha, b=branch: smoothing_stage(app, model, base, stage, a, b),
+                {'branch': branch, 'alpha': alpha, 'source': 'same canonical asset and raw fitted motion'})
+            if result:
+                observations.append({'sequence': seq_name, 'variant': variant, 'video': result['video']})
+        for i, frame in enumerate(frames):
+            if frame == ref:
+                continue
+            result = run.stage(seq_name+f'/keyframe_{i:02}',
+                lambda stage, f=frame: core_run(app, core, seq, f, stage, shared),
+                {'sequence': seq_name, 'reference': frame.name, 'shared_shape': str(shared)})
+            if result:
+                assets.append(result['asset'])
+                asset_by_frame[frame.name] = result['asset']
+                observations.append({'sequence': seq_name, 'variant': f'keyframe_{i:02}', 'video': result['stabilized']})
+        for k in [2, 3, 5]:
+            if len(assets) < k:
+                continue
+            for weighted in [False, True]:
+                ordered_assets = [asset_by_frame[f.name] for f in frames if f.name in asset_by_frame]
+                selected_assets = [ordered_assets[i] for i in np.linspace(0, len(ordered_assets)-1, k).round().astype(int)]
+                variant = f'fusion_k{k}_' + ('agreement' if weighted else 'uniform')
                 result = run.stage(seq_name+'/'+variant,
-                    lambda stage, a=alpha, b=branch: smoothing_stage(app, model, base, stage, a, b),
-                    {'branch': branch, 'alpha': alpha, 'source': 'same canonical asset and raw fitted motion'})
+                    lambda stage, selected=selected_assets, w=weighted: fusion_stage(model, selected, stage, w),
+                    {'sources': k, 'source_assets': selected_assets, 'agreement_confidence': weighted, 'anchor_validation': True})
                 if result:
                     observations.append({'sequence': seq_name, 'variant': variant, 'video': result['video']})
-            for i, frame in enumerate(frames):
-                if frame == ref:
-                    continue
-                result = run.stage(seq_name+f'/keyframe_{i:02}',
-                    lambda stage, f=frame: core_run(app, core, seq, f, stage, shared),
-                    {'sequence': seq_name, 'reference': frame.name, 'shared_shape': str(shared)})
+        if len(assets) >= 3:
+            ordered_assets = [asset_by_frame[f.name] for f in frames if f.name in asset_by_frame]
+            graph_assets = [ordered_assets[i] for i in np.linspace(0, len(ordered_assets)-1, 3).round().astype(int)]
+            for amount in [.1, .25]:
+                variant = f'fusion_graph_{amount}'
+                result = run.stage(seq_name+'/'+variant,
+                    lambda stage, a=amount: fusion_stage(model, graph_assets, stage, True, a),
+                    {'sources': 3, 'graph_color_amount': amount, 'trained': False})
                 if result:
-                    assets.append(result['asset'])
-                    asset_by_frame[frame.name] = result['asset']
-                    observations.append({'sequence': seq_name, 'variant': f'keyframe_{i:02}', 'video': result['stabilized']})
-            for k in [2, 3, 5]:
-                if len(assets) < k:
-                    continue
-                for weighted in [False, True]:
-                    ordered_assets = [asset_by_frame[f.name] for f in frames if f.name in asset_by_frame]
-                    selected_assets = [ordered_assets[i] for i in np.linspace(0, len(ordered_assets)-1, k).round().astype(int)]
-                    variant = f'fusion_k{k}_' + ('agreement' if weighted else 'uniform')
-                    result = run.stage(seq_name+'/'+variant,
-                        lambda stage, selected=selected_assets, w=weighted: fusion_stage(model, selected, stage, w),
-                        {'sources': k, 'source_assets': selected_assets, 'agreement_confidence': weighted, 'anchor_validation': True})
-                    if result:
-                        observations.append({'sequence': seq_name, 'variant': variant, 'video': result['video']})
-            if len(assets) >= 3:
-                ordered_assets = [asset_by_frame[f.name] for f in frames if f.name in asset_by_frame]
-                graph_assets = [ordered_assets[i] for i in np.linspace(0, len(ordered_assets)-1, 3).round().astype(int)]
-                for amount in [.1, .25]:
-                    variant = f'fusion_graph_{amount}'
-                    result = run.stage(seq_name+'/'+variant,
-                        lambda stage, a=amount: fusion_stage(model, graph_assets, stage, True, a),
-                        {'sources': 3, 'graph_color_amount': amount, 'trained': False})
-                    if result:
-                        observations.append({'sequence': seq_name, 'variant': variant, 'video': result['video']})
+                    observations.append({'sequence': seq_name, 'variant': variant, 'video': result['video']})
     # A separate calibrated attempt: rectify source/GT, fit with source K, render with B K/R/T.
     if run.allowed(reserve=1800):
         from rectify_inputs import rectify
@@ -356,7 +365,23 @@ def main(args):
                 if target:
                     calibrated_observations.append({'sequence': 'zju_313_calibrated',
                         'variant': 'camera_B_calibrated_gaussian_motion', 'video': target['video']})
-    dump(run.root/'observations.json', observations+calibrated_observations)
+
+    def merge_observations(items):
+        path = run.root/'observations.json'
+        existing = []
+        if path.exists():
+            try:
+                existing = json.loads(path.read_text(encoding='utf8'))
+            except Exception:
+                existing = []
+        merged = {(o['sequence'], o['variant']): o for o in existing}
+        for o in items:
+            merged[(o['sequence'], o['variant'])] = o
+        rows = sorted(merged.values(), key=lambda o: (o['sequence'], o['variant']))
+        dump(path, rows)
+        return rows
+
+    merge_observations(observations+calibrated_observations)
     del model, core
     gc.collect()
     torch.cuda.empty_cache()
@@ -383,9 +408,9 @@ def main(args):
                                {'strength': strength, 'steps': steps, 'effective_steps': int(steps*strength), 'paired_seed_base': 42, 'frames': 'all', 'trained': False})
             if result:
                 observations.append({'sequence': seq_name, 'variant': name, 'video': result['output_path']})
-    dump(run.root/'observations.json', observations+calibrated_observations)
+    all_observations = merge_observations(observations+calibrated_observations)
     from evaluate_video import evaluate
-    for item in observations+calibrated_observations:
+    for item in all_observations:
         seq = Path(args.inputs)/item['sequence']
         run.stage(item['sequence']+'/eval_'+item['variant'],
             lambda stage, item=item, seq=seq: evaluate(item['video'], seq/'heldout_view_B.mp4',
@@ -403,5 +428,7 @@ if __name__ == '__main__':
     p.add_argument('--checkpoint', required=True)
     p.add_argument('--out', required=True)
     p.add_argument('--sd-model', default='')
+    p.add_argument('--sequences', default='',
+                   help='comma-separated subset of zju_313_wk2,zju_390_kick_wk2,zju_390_mid10')
     p.add_argument('--deadline', type=float, required=True)
     main(p.parse_args())
