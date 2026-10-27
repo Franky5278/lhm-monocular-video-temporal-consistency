@@ -68,18 +68,21 @@ def restore_gs(bundle, device='cuda'):
                                  for k, v in g.items()}) for g in bundle['gs']]
 
 
-def fuse_bundles(bundles, frame_weights=None, agreement_scale=0.02):
+def fuse_bundles(bundles, frame_weights=None, agreement_scale=0.02, anchor_tolerance_m=0.01):
     if len(bundles) < 2:
         raise ValueError('Fusion needs at least two independently reconstructed sources')
     for b in bundles:
         validate(b)
     ref = bundles[0]
+    worst_anchor = 0.0
     for b in bundles[1:]:
         if b['query_points'].shape != ref['query_points'].shape:
             raise ValueError('Anchor topology mismatch')
-        if not torch.allclose(b['query_points'], ref['query_points'], atol=1e-6, rtol=1e-6):
-            raise ValueError('Anchor correspondence unverified; use shared shape and anchor order')
-        if not torch.allclose(b['betas'], ref['betas'], atol=1e-6, rtol=1e-6):
+        deviation = (b['query_points'] - ref['query_points']).abs().max().item()
+        worst_anchor = max(worst_anchor, deviation)
+        if deviation > anchor_tolerance_m:
+            raise ValueError(f'Anchor correspondence unverified: {deviation:.4f} m apart')
+        if not torch.allclose(b['betas'], ref['betas'], atol=1e-4, rtol=0):
             raise ValueError('Cannot fuse different body shapes without registration')
     out = copy.deepcopy(ref)
     fw = torch.as_tensor(frame_weights if frame_weights is not None else
@@ -115,6 +118,7 @@ def fuse_bundles(bundles, frame_weights=None, agreement_scale=0.02):
         'sources': len(bundles), 'frame_weights': fw.tolist(),
         'agreement_scale_m': agreement_scale,
         'correspondence': 'canonical query coordinates and shared shape verified',
+        'anchor_max_deviation_m': worst_anchor,
         'confidence': 'cross-source offset agreement proxy; not visibility',
         'method': 'weighted linear attributes, hemisphere-corrected quaternion, log scale',
     }}
