@@ -39,7 +39,9 @@ run_phase() {
   "$PY" "$REPO/research/run_experiments.py" \
     --source "$ROOT/LHM" --inputs "$ROOT/inputs" --checkpoint "$CKPT" \
     --out "$OUT" --deadline "$DEADLINE" --sd-model "$SD_MODEL" "$@" >> "$LOG" 2>&1
-  echo "$(date -Is) END $tag exit=$?" >> "$LOG"
+  local rc=$?
+  echo "$(date -Is) END $tag exit=$rc" >> "$LOG"
+  return $rc
 }
 
 run_phase A --sequences zju_313_wk2,zju_390_kick_wk2
