@@ -52,6 +52,15 @@ orthogonal and costs no pose deviation; α walks the smoothness/fidelity trade-o
 
 ![Smoothing trade-off](figures/fig_smoothing_tradeoff.png)
 
+**One of our own design choices does not survive a matched-fidelity comparison.** At
+the same deviation budget, a zero-phase EMA (the same operator run forward and
+backward) removes ~2.7× more jitter than the causal EMA this pipeline uses, and a
+plain centred moving average also beats it. Offline rendering has no causality
+constraint, so the causal filter's lag is pure cost. The comparison, the numbers and
+the revised claim are in [reports/04_filter_comparison.md](reports/04_filter_comparison.md).
+
+![Matched-fidelity filter comparison](figures/fig_filter_pareto.png)
+
 ## Honest results for the "future work" items
 
 | item | status | measured outcome |
